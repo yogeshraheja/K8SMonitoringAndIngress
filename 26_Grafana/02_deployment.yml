@@ -34,7 +34,7 @@ spec:
             name: grafana-datasources
             readOnly: false
       tolerations:
-        - key: node-role.kubernetes.io/master
+        - key: node-role.kubernetes.io/control-plane
           effect: NoSchedule
       volumes:
         - name: grafana-storage
