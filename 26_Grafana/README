@@ -4,7 +4,7 @@ There are many prebuilt Grafana templates available for various data sources "ht
 
 Step 1: Get the template ID from grafana public template.
 
-Example 8588 (I took)
+Example 8588 (I took) and 12740
 
 Step 2: Head over to grafana and select the import option from (+) create button.
 
