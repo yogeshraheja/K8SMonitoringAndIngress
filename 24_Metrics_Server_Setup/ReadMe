@@ -1,0 +1,12 @@
+This Chapter is to demonstrate how to setup Metric server in K8S
+
+- The main code is taken fron official k8s repository : https://github.com/kubernetes-sigs/metrics-server
+- The yaml file has been modified with below changes:
+1.) added --kubelet-insecure-tls in the conatiner start up arguments
+2.) Added tolerations to schedule the pod on master
+3.) Changes nodeselector to put the pod only on master
+
+Once done run below commands to verify if the metrics has been captured:
+
+- kubectl top node
+- kubectl top pod
