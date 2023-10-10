@@ -36,7 +36,7 @@ sudo sysctl --system
 
 # Installing CRI-O as a runtime
 
---> export VERSION=1.24
+--> export VERSION=1.28
 --> export OS=CentOS_7
 
 --> echo $VERSION
@@ -104,10 +104,33 @@ rpm -qa | grep -i kube*
 
 kubeadm init
 
+# Once kubeadm init command gets completed successfull, observe the last section of the output which will ask you to "set kubeconfig file", "install the CNI" and "add the worker nodes using the created tokens". Below is a reference for you:
+
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join x.x.x.x:6443 --token gnl7u2.ibvu8iii9fjwvxxrj \
+	--discovery-token-ca-cert-hash sha256:j8ud6000038456f2eb8ecejjja061e85380a312a704uyt1f27aeb6a0aabdoooo
+  
 # Seeting up Calico
 # Details about CNI https://kubernetes.io/docs/concepts/cluster-administration/addons/#networking-and-network-policy
 
-curl https://raw.githubusercontent.com/projectcalico/calico/v3.25.1/manifests/calico.yaml -O
+curl https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/calico.yaml -O
 kubectl apply -f calico.yaml
 
 kubectl get nodes
