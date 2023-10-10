@@ -100,7 +100,8 @@ Note: The kubelet will not start unless and until we complete the bootstrapping 
 
 rpm -qa | grep -i kube*
 
-# Initializing K8S Cluster
+# Initializing K8S Cluster (RUN THIS ONLY ON YOUR MASTER NODE)
+# RUN THIS ONLY ON YOUR MASTER NODE
 
 kubeadm init
 
@@ -127,7 +128,7 @@ Then you can join any number of worker nodes by running the following on each as
 kubeadm join x.x.x.x:6443 --token gnl7u2.ibvu8iii9fjwvxxrj \
 	--discovery-token-ca-cert-hash sha256:j8ud6000038456f2eb8ecejjja061e85380a312a704uyt1f27aeb6a0aabdoooo
   
-# Seeting up Calico
+# Seeting up Calico (RUN THIS ONLY ON YOUR MASTER NODE)
 # Details about CNI https://kubernetes.io/docs/concepts/cluster-administration/addons/#networking-and-network-policy
 
 curl https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/calico.yaml -O
