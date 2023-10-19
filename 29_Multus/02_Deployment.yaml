@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: multustest
+  name: multustest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multustest
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        k8s.v1.cni.cncf.io/networks: macvlan-conf,macvlan-conf
+      labels:
+        app: multustest
+    spec:
+      containers:
+      - image: alpine:latest
+        name: alpine
+        command: ["/bin/ash", "-c", "sleep 300"]
